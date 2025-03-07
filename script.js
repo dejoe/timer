@@ -3,24 +3,31 @@ let hours = 0;
 let minutes = 0;
 let seconds = 0;
 let isRunning = false;
+let isPaused = false;
 let isFullscreen = false;
 let isDarkMode = false;
 
 const clockElement = document.getElementById('clock');
 const startStopButton = document.getElementById('startStopButton');
+const pauseButton = document.getElementById('pauseButton');
 const fullscreenButton = document.getElementById('fullscreenButton');
 const darkModeButton = document.getElementById('darkModeButton');
 const hoursInput = document.getElementById('hours');
 const minutesInput = document.getElementById('minutes');
 const secondsInput = document.getElementById('seconds');
+const beepSound = document.getElementById('beepSound');
 
 function updateClock() {
+  if (isPaused) return;
+
   if (seconds === 0) {
     if (minutes === 0) {
       if (hours === 0) {
         clearInterval(timerInterval);
         isRunning = false;
         startStopButton.textContent = 'Start';
+        pauseButton.disabled = true;
+        playBeep();
         return;
       }
       hours--;
@@ -41,6 +48,7 @@ function startStopTimer() {
   if (!isRunning) {
     isRunning = true;
     startStopButton.textContent = 'Stop';
+    pauseButton.disabled = false;
     hours = parseInt(hoursInput.value, 10) || 0;
     minutes = parseInt(minutesInput.value, 10) || 0;
     seconds = parseInt(secondsInput.value, 10) || 0;
@@ -48,7 +56,18 @@ function startStopTimer() {
   } else {
     isRunning = false;
     startStopButton.textContent = 'Start';
+    pauseButton.disabled = true;
     clearInterval(timerInterval);
+  }
+}
+
+function pauseTimer() {
+  if (isRunning && !isPaused) {
+    isPaused = true;
+    pauseButton.textContent = 'Resume';
+  } else if (isRunning && isPaused) {
+    isPaused = false;
+    pauseButton.textContent = 'Pause';
   }
 }
 
@@ -91,20 +110,18 @@ function toggleDarkMode() {
   }
 }
 
-function adjustFontSize() {
-  const containerWidth = document.querySelector('.container').clientWidth;
-  const containerHeight = document.querySelector('.container').clientHeight;
-  const maxFontSize = Math.min(containerWidth / 1.5, containerHeight / 2); // Adjust these factors as needed
-  clockElement.style.fontSize = `${maxFontSize}px`;
+function playBeep() {
+  beepSound.play();
+  setTimeout(() => {
+    beepSound.pause();
+    beepSound.currentTime = 0;
+  }, 5000);
 }
 
-window.addEventListener('resize', adjustFontSize);
-document.addEventListener('DOMContentLoaded', adjustFontSize);
-
 startStopButton.addEventListener('click', startStopTimer);
+pauseButton.addEventListener('click', pauseTimer);
 fullscreenButton.addEventListener('click', toggleFullscreen);
 darkModeButton.addEventListener('click', toggleDarkMode);
 
 // Initialize the clock display
 clockElement.textContent = '00:00:00';
-//
