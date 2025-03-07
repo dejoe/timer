@@ -1,0 +1,104 @@
+
+    body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.container.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+#clock {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 4em; /* Larger font size for better visibility */
+}
+
+.bottom-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-container label {
+    margin-right: 5px;
+}
+
+.input-container input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.input-container input:focus {
+    border-color: #007bff;
+}
+
+#startStopButton, #fullscreenButton, #darkModeButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#startStopButton:hover, #fullscreenButton:hover, #darkModeButton:hover {
+    background-color: #0056b3;
+}
+
+#startStopButton:active, #fullscreenButton:active, #darkModeButton:active {
+    background-color: #004085;
+}
+
+#startStopButton.dark-mode, #fullscreenButton.dark-mode, #darkModeButton.dark-mode {
+    background-color: #4CAF50;
+}
+
+#startStopButton.dark-mode:hover, #fullscreenButton.dark-mode:hover, #darkModeButton.dark-mode:hover {
+    background-color: #45a049;
+}
+
+#startStopButton.dark-mode:active, #fullscreenButton.dark-mode:active, #darkModeButton.dark-mode:active {
+    background-color: #388e3c;
+}
+  
