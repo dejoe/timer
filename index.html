@@ -5,8 +5,8 @@
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
-      <div class="container">
-        <div id="clock" style="font-size: 427.5px;">00:00:00</div>
+    <div class="container">
+        <div id="clock">00:00:00</div>
         <div class="bottom-panel">
             <div class="input-container">
                 <label for="hours">Hours:</label>
@@ -17,10 +17,12 @@
                 <input type="number" id="seconds" min="0" value="0">
             </div>
             <button id="startStopButton">Start</button>
+            <button id="pauseButton" disabled="">Pause</button>
             <button id="fullscreenButton">Fullscreen</button>
             <button id="darkModeButton">Dark Mode</button>
         </div>
-      </div>
+        <audio id="beepSound" src="beep.mp3"></audio>
+    </div>
       <script src="script.js"></script>
 </body>
 </html>
