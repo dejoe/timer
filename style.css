@@ -1,5 +1,5 @@
 
-    body, html {
+body, html {
     height: 100%;
     margin: 0;
     display: flex;
@@ -38,7 +38,7 @@ body.dark-mode {
 #clock {
     margin-bottom: 20px;
     font-weight: bold;
-    font-size: 4em; /* Larger font size for better visibility */
+    font-size: 24vw; /* Scale font size based on viewport width */
 }
 
 .bottom-panel {
@@ -71,7 +71,7 @@ body.dark-mode {
     border-color: #007bff;
 }
 
-#startStopButton, #fullscreenButton, #darkModeButton {
+#startStopButton, #pauseButton, #fullscreenButton, #darkModeButton {
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
@@ -82,23 +82,23 @@ body.dark-mode {
     transition: background-color 0.3s ease;
 }
 
-#startStopButton:hover, #fullscreenButton:hover, #darkModeButton:hover {
+#startStopButton:hover, #pauseButton:hover, #fullscreenButton:hover, #darkModeButton:hover {
     background-color: #0056b3;
 }
 
-#startStopButton:active, #fullscreenButton:active, #darkModeButton:active {
+#startStopButton:active, #pauseButton:active, #fullscreenButton:active, #darkModeButton:active {
     background-color: #004085;
 }
 
-#startStopButton.dark-mode, #fullscreenButton.dark-mode, #darkModeButton.dark-mode {
+#startStopButton.dark-mode, #pauseButton.dark-mode, #fullscreenButton.dark-mode, #darkModeButton.dark-mode {
     background-color: #4CAF50;
 }
 
-#startStopButton.dark-mode:hover, #fullscreenButton.dark-mode:hover, #darkModeButton.dark-mode:hover {
+#startStopButton.dark-mode:hover, #pauseButton.dark-mode:hover, #fullscreenButton.dark-mode:hover, #darkModeButton.dark-mode:hover {
     background-color: #45a049;
 }
 
-#startStopButton.dark-mode:active, #fullscreenButton.dark-mode:active, #darkModeButton.dark-mode:active {
+#startStopButton.dark-mode:active, #pauseButton.dark-mode:active, #fullscreenButton.dark-mode:active, #darkModeButton.dark-mode:active {
     background-color: #388e3c;
 }
   
