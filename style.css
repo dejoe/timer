@@ -26,7 +26,6 @@ body.dark-mode {
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    padding: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -37,7 +36,8 @@ body.dark-mode {
 
 #clock {
     margin-bottom: 20px;
-    font-weight: bold;
+    font-family: 'Antonio', sans-serif;
+    font-weight: 600;
     font-size: 24vw; /* Scale font size based on viewport width */
 }
 
