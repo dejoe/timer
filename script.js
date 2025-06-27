@@ -41,23 +41,64 @@ function updateClock() {
     seconds--;
   }
 
-  clockElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  // This function uses the global timer variables (h, m, s) that are being decremented
+  if (hours === 0) {
+    clockElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    if (!clockElement.classList.contains('no-hours')) {
+        clockElement.classList.add('no-hours');
+    }
+  } else {
+    clockElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    if (clockElement.classList.contains('no-hours')) {
+        clockElement.classList.remove('no-hours');
+    }
+  }
 }
+
+// Renamed to reflect its purpose: updates display based on INPUT fields
+function updateDisplayFromInputs() {
+  const inputH = parseInt(hoursInput.value, 10) || 0;
+  const inputM = parseInt(minutesInput.value, 10) || 0;
+  const inputS = parseInt(secondsInput.value, 10) || 0;
+
+  if (inputH === 0) {
+    clockElement.textContent = `${String(inputM).padStart(2, '0')}:${String(inputS).padStart(2, '0')}`;
+    clockElement.classList.add('no-hours');
+  } else {
+    clockElement.textContent = `${String(inputH).padStart(2, '0')}:${String(inputM).padStart(2, '0')}:${String(inputS).padStart(2, '0')}`;
+    clockElement.classList.remove('no-hours');
+  }
+}
+
 
 function startStopTimer() {
   if (!isRunning) {
-    isRunning = true;
-    startStopButton.textContent = 'Stop';
-    pauseButton.disabled = false;
+    // Read initial values from inputs into timer variables
     hours = parseInt(hoursInput.value, 10) || 0;
     minutes = parseInt(minutesInput.value, 10) || 0;
     seconds = parseInt(secondsInput.value, 10) || 0;
+
+    // Set initial display and class based on these timer variables
+    // This effectively calls the display logic of updateClock() once before interval starts
+    if (hours === 0) {
+      clockElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      clockElement.classList.add('no-hours');
+    } else {
+      clockElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      clockElement.classList.remove('no-hours');
+    }
+
+    isRunning = true;
+    startStopButton.textContent = 'Stop';
+    pauseButton.disabled = false;
     timerInterval = setInterval(updateClock, 1000);
   } else {
     isRunning = false;
     startStopButton.textContent = 'Start';
     pauseButton.disabled = true;
     clearInterval(timerInterval);
+    // Update display based on current input values when stopped
+    updateDisplayFromInputs();
   }
 }
 
@@ -123,5 +164,14 @@ pauseButton.addEventListener('click', pauseTimer);
 fullscreenButton.addEventListener('click', toggleFullscreen);
 darkModeButton.addEventListener('click', toggleDarkMode);
 
+// Renamed to reflect its purpose: updates display based on INPUT fields
+// This function was already modified and renamed above, this is just for context.
+// function updateDisplayFromInputs() { ... }
+
 // Initialize the clock display
-clockElement.textContent = '00:00:00';
+updateDisplayFromInputs();
+
+// Add event listeners to input fields to update display dynamically
+hoursInput.addEventListener('input', updateDisplayFromInputs);
+minutesInput.addEventListener('input', updateDisplayFromInputs);
+secondsInput.addEventListener('input', updateDisplayFromInputs);

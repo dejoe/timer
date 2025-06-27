@@ -41,6 +41,10 @@ body.dark-mode {
     font-size: 24vw; /* Scale font size based on viewport width */
 }
 
+#clock.no-hours {
+    font-size: 36vw; /* Increased font size when hours are not shown */
+}
+
 .bottom-panel {
     display: flex;
     justify-content: center;
